@@ -28,13 +28,11 @@ body {
   --color_white: #fefefe;
   --input_hover: #2060a5;
   --input_focus: #0e7fee;
-
   --primary: #0684ff;
-
-
+  --danger: #f44238;
+  --danger_outline: #da453b;
   --dark: #1b1b1b;
   --input_dark: #2b2b2b;
   --dark_hover: #616161;
   --dark_text: #8c8c8c;
-
 }

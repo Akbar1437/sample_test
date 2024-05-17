@@ -5,6 +5,8 @@ import { Container } from "../ui/container/Container";
 import { Input } from "../ui/input/input";
 import { Switch } from "../ui/switch/Switch";
 import { validationRules } from "./validation.rules";
+import eyeOn from "../../../public/iconmonstr-eye-2.svg";
+import eyeOff from "../../../public/iconmonstr-eye-off-thin.svg";
 
 export function SecondBlock() {
   /* --------------------------------------------------------------------------- */
@@ -20,6 +22,9 @@ export function SecondBlock() {
 
   const [input, setInput] = useState(defaultInput);
   const [error, setError] = useState(defaultInput);
+  const [type, setType] = useState("password");
+  const [icon, setIcon] = useState(eyeOff);
+
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   /* --------------------------------------------------------------------------- */
@@ -35,7 +40,11 @@ export function SecondBlock() {
   const validateField = (name: string, value: string) => {
     const tempInput = { ...input, [name]: value };
     const tempError = validationRules(tempInput);
-    setError((prevError) => ({ ...prevError, [name]: tempError[name] }));
+
+    setError((prevError) => ({
+      ...prevError,
+      [name]: (tempError as { [key: string]: unknown })[name],
+    }));
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,6 +57,16 @@ export function SecondBlock() {
     event.preventDefault();
     setError(() => validationRules(input));
     console.log("input", input);
+  };
+
+  const handleToggle = () => {
+    if (type === "password") {
+      setIcon(eyeOn);
+      setType("text");
+    } else {
+      setIcon(eyeOff);
+      setType("password");
+    }
   };
 
   /* --------------------------------------------------------------------------- */
@@ -76,17 +95,19 @@ export function SecondBlock() {
         <Input
           mode="input"
           name="password"
-          type="password"
+          type={type}
           placeholder="Пароль"
           errorText={error.password}
           value={input.password}
           onChange={handleChange}
           onBlur={() => setError(defaultInput)}
+          icon={icon}
+          onIconClick={handleToggle}
         />
         <Input
           mode="input"
           name="confirmPassword"
-          type="password"
+          type={type}
           placeholder="Подтвердите пароль"
           errorText={error.confirmPassword}
           value={input.confirmPassword}

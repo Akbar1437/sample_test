@@ -2,6 +2,8 @@ import React, { forwardRef } from "react";
 import styles from "./styles.module.css";
 
 type CommonProps = {
+  icon?: string;
+  onIconClick?: () => void;
   mode: "input" | "textarea";
   placeholder?: string;
   errorText?: string;
@@ -14,12 +16,12 @@ type TextareaProps = CommonProps &
 type Props = InputProps | TextareaProps;
 
 export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
-  ({ mode, placeholder, errorText, ...otherProps }, ref) => {
+  ({ icon, onIconClick, mode, placeholder, errorText, ...otherProps }, ref) => {
     /* --------------------------------------------------------------------------- */
     /* variables
   /* --------------------------------------------------------------------------- */
     const commonProps = {
-      style: errorText ? { borderColor: "red", outline: "red" } : {},
+      style: errorText ? { borderColor: "#f44238", outline: "#da453b" } : {},
       className: styles.input,
       placeholder: "",
     };
@@ -43,10 +45,16 @@ export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
           )}
           <label
             className={styles.label}
-            style={{ color: errorText ? "red" : "" }}
+            style={{ color: errorText ? "#da453b" : "" }}
           >
             {errorText ? errorText : placeholder}
           </label>
+
+          {icon && (
+            <div className={styles.imgContainer} onClick={onIconClick}>
+              <img src={icon} alt="#icon" />
+            </div>
+          )}
         </div>
       </div>
     );
