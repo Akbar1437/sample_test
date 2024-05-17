@@ -1,0 +1,40 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  background-color: var(--root_background);
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* --------------------------------------------------------------------------- */
+/* Colors */
+/* --------------------------------------------------------------------------- */
+:root {
+  --root_background: #000000;
+  --color_white: #fefefe;
+  --input_hover: #2060a5;
+  --input_focus: #0e7fee;
+
+  --primary: #0684ff;
+
+
+  --dark: #1b1b1b;
+  --input_dark: #2b2b2b;
+  --dark_hover: #616161;
+  --dark_text: #8c8c8c;
+
+}

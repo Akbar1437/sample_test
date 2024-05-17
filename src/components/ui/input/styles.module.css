@@ -1,0 +1,81 @@
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem auto;
+}
+
+.inputWrap {
+    position: relative;
+    width: 100%;
+}
+
+.label {
+    position: absolute;
+    font-size: 1rem;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--input_dark);
+    color: var(--dark_text);
+    padding: 0 0.3rem;
+    margin: 0 0.5rem;
+    transition: 0.1s ease-out;
+    transform-origin: left top;
+    pointer-events: none;
+}
+
+.input {
+    width: 100%;
+    font-size: 1rem;
+    outline: none;
+    border: 1px solid var(--input_dark);
+    border-radius: 0.5rem;
+    padding: 1rem 0.7rem;
+    color: var(--color_white);
+    transition: 0.1s ease-out;
+    background: var(--input_dark);
+    resize: none;
+}
+
+.input:hover {
+    border-color: var(--input_hover);
+}
+
+.input:hover+label {
+    color: var(--input_hover)
+}
+
+.input:focus {
+    background: var(--dark);
+    border-color: var(--input_hover);
+    outline: 1px solid var(--input_focus);
+}
+
+.input:focus+label {
+    color: var(--input_focus);
+    top: 0;
+    transform: translateY(-50%) scale(0.9);
+    background: var(--dark)
+}
+
+.input:not(:placeholder-shown)+label {
+    top: 0;
+    transform: translateY(-50%) scale(0.9);
+    background: var(--dark)
+}
+
+.input:not(:placeholder-shown) {
+    background: var(--dark)
+}
+
+.input:not(:focus)::placeholder {
+    opacity: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 0s 600000s, color 0s 600000s
+}
